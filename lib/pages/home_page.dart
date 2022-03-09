@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tabla_periodica/model/periodic_table.dart';
+import 'package:tabla_periodica/pages/info_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
+
+  static const routerName = '/';
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -42,8 +46,22 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               return Card(
                 child: ListTile(
+                  leading: Text(
+                    _tableElements[index].symbol,
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                  ),
                   title: Text(_tableElements[index].name),
-                  subtitle: Text(_tableElements[index].symbol),
+                  subtitle: Text(_tableElements[index].number.toString() +
+                      ' ' +
+                      _tableElements[index].category),
+                  onTap: () => {
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => InfoPage()))
+                    Navigator.pushNamed(context, InfoPage.routerName,
+                        arguments: _tableElements[index])
+                  },
                 ),
               );
             }));
