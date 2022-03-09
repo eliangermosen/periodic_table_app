@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tabla_periodica/model/periodic_table.dart';
+import 'package:tabla_periodica/pages/about_page.dart';
 import 'package:tabla_periodica/pages/info_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,6 +41,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Periodic Table Home"),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AboutPage.routerName);
+              },
+              icon: const Icon(Icons.person),
+              tooltip: "About Me",
+            )
+          ],
         ),
         body: ListView.builder(
             itemCount: _tableElements.length,
@@ -57,8 +67,6 @@ class _HomePageState extends State<HomePage> {
                       ' ' +
                       _tableElements[index].category),
                   onTap: () => {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => InfoPage()))
                     Navigator.pushNamed(context, InfoPage.routerName,
                         arguments: _tableElements[index])
                   },

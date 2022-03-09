@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tabla_periodica/pages/about_page.dart';
 import 'package:tabla_periodica/pages/home_page.dart';
 import 'package:tabla_periodica/pages/info_page.dart';
 
@@ -18,25 +19,9 @@ class MyApp extends StatelessWidget {
       initialRoute: HomePage.routerName,
       routes: {
         HomePage.routerName: (context) => HomePage(),
-        InfoPage.routerName: (context) => InfoPage()
-        // '/': (context) => HomePage(),
-        // '/info': (context) => InfoPage(),
-        // '/about': (context) => Abou(),
+        InfoPage.routerName: (context) => InfoPage(),
+        AboutPage.routerName: (context) => const AboutPage()
       },
     );
   }
 }
-
-// class MainPage extends StatefulWidget {
-//   MainPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<MainPage> createState() => _MainPageState();
-// }
-
-// class _MainPageState extends State<MainPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
