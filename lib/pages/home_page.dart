@@ -11,23 +11,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Elements> _elements = [];
+  List<Elements> _tableElements = [];
 
   _HomePageState() {
-    loadJSON();
+    loadingJSON();
   }
 
-  void loadJSON() {
+  void loadingJSON() {
     rootBundle
         .loadString("assets/periodic_table.json")
-        .then((value) => {_elementState(value)});
+        .then((value) => {_tableElementState(value)});
   }
 
-  void _elementState(String json) {
+  void _tableElementState(String json) {
     Map<String, dynamic> j = jsonDecode(json);
     var e = PeriodicTable.fromJson(j);
     setState(() {
-      _elements = e.elements;
+      _tableElements = e.elements;
     });
   }
 
@@ -38,12 +38,12 @@ class _HomePageState extends State<HomePage> {
           title: const Text("Periodic Table Home"),
         ),
         body: ListView.builder(
-            itemCount: _elements.length,
+            itemCount: _tableElements.length,
             itemBuilder: (context, index) {
               return Card(
                 child: ListTile(
-                  title: Text(_elements[index].name),
-                  subtitle: Text(_elements[index].symbol),
+                  title: Text(_tableElements[index].name),
+                  subtitle: Text(_tableElements[index].symbol),
                 ),
               );
             }));
